@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Language, translations } from "@/utils/translations";
 import { Menu, X, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface HeaderProps {
   lang: Language;
@@ -48,7 +49,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-slate-900/80 backdrop-blur-md border-b border-slate-800 shadow-lg py-3"
+          ? "bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-lg py-3"
           : "bg-transparent py-5"
       }`}
     >
@@ -86,10 +87,10 @@ export default function Header({ lang, setLang }: HeaderProps) {
               </svg>
             </div>
             <div>
-              <span className="text-xl font-bold tracking-tight text-white font-sans flex items-center gap-1">
-                VITTI <span className="text-emerald-400 font-light">BUILDERS</span>
+              <span className={`text-xl font-bold tracking-tight font-sans flex items-center gap-1 transition-colors duration-300 ${isScrolled ? "text-slate-900 dark:text-white" : "text-white"}`}>
+                VITTI <span className="text-emerald-500 dark:text-emerald-400 font-light">BUILDERS</span>
               </span>
-              <span className="block text-[9px] uppercase tracking-widest text-slate-400 font-semibold leading-none">
+              <span className={`block text-[9px] uppercase tracking-widest font-semibold leading-none transition-colors duration-300 ${isScrolled ? "text-slate-500 dark:text-slate-400" : "text-slate-400"}`}>
                 {lang === "en" ? "Foundation of Trust" : "বিশ্বস্ততার ভিত্তি"}
               </span>
             </div>
@@ -99,31 +100,31 @@ export default function Header({ lang, setLang }: HeaderProps) {
           <nav className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("home")}
-              className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors"
+              className={`text-sm font-medium hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
             >
               {t.nav.home}
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors"
+              className={`text-sm font-medium hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
             >
               {t.nav.projects}
             </button>
             <button
               onClick={() => scrollToSection("landowners")}
-              className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors"
+              className={`text-sm font-medium hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
             >
               {t.nav.landowners}
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors"
+              className={`text-sm font-medium hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
             >
               {t.nav.about}
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-sm font-medium text-slate-300 hover:text-emerald-400 transition-colors"
+              className={`text-sm font-medium hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
             >
               {t.nav.contact}
             </button>
@@ -135,11 +136,13 @@ export default function Header({ lang, setLang }: HeaderProps) {
               variant="ghost"
               size="sm"
               onClick={() => setLang(lang === "en" ? "bn" : "en")}
-              className="text-slate-300 hover:text-emerald-400 hover:bg-slate-800/50 flex items-center gap-2"
+              className={`hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 flex items-center gap-2 transition-colors duration-300 ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
             >
               <Globe className="h-4 w-4" />
               <span>{lang === "en" ? "বাংলা" : "English"}</span>
             </Button>
+
+            <ThemeToggle />
             
             <Button
               onClick={() => scrollToSection("landowners")}
@@ -155,13 +158,16 @@ export default function Header({ lang, setLang }: HeaderProps) {
               variant="ghost"
               size="sm"
               onClick={() => setLang(lang === "en" ? "bn" : "en")}
-              className="text-slate-300 hover:text-emerald-400 hover:bg-slate-800/50 p-2"
+              className={`hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 p-2 transition-colors duration-300 ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
             >
               <Globe className="h-5 w-5" />
             </Button>
+
+            <ThemeToggle />
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-slate-300 hover:text-white p-2"
+              className={`hover:text-emerald-500 dark:hover:text-white p-2 transition-colors duration-300 ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -172,35 +178,35 @@ export default function Header({ lang, setLang }: HeaderProps) {
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-slate-950/95 backdrop-blur-lg border-b border-slate-800 animate-in fade-in slide-in-from-top-5 duration-200">
+        <div className="md:hidden bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800 animate-in fade-in slide-in-from-top-5 duration-200">
           <div className="px-4 pt-2 pb-6 space-y-3">
             <button
               onClick={() => scrollToSection("home")}
-              className="block w-full text-left py-2 px-3 rounded-md text-base font-medium text-slate-300 hover:text-emerald-400 hover:bg-slate-900/50 transition-all"
+              className="block w-full text-left py-2 px-3 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-all"
             >
               {t.nav.home}
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className="block w-full text-left py-2 px-3 rounded-md text-base font-medium text-slate-300 hover:text-emerald-400 hover:bg-slate-900/50 transition-all"
+              className="block w-full text-left py-2 px-3 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-all"
             >
               {t.nav.projects}
             </button>
             <button
               onClick={() => scrollToSection("landowners")}
-              className="block w-full text-left py-2 px-3 rounded-md text-base font-medium text-slate-300 hover:text-emerald-400 hover:bg-slate-900/50 transition-all"
+              className="block w-full text-left py-2 px-3 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-all"
             >
               {t.nav.landowners}
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className="block w-full text-left py-2 px-3 rounded-md text-base font-medium text-slate-300 hover:text-emerald-400 hover:bg-slate-900/50 transition-all"
+              className="block w-full text-left py-2 px-3 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-all"
             >
               {t.nav.about}
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="block w-full text-left py-2 px-3 rounded-md text-base font-medium text-slate-300 hover:text-emerald-400 hover:bg-slate-900/50 transition-all"
+              className="block w-full text-left py-2 px-3 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 transition-all"
             >
               {t.nav.contact}
             </button>

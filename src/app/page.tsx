@@ -255,12 +255,12 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white font-sans antialiased">
+    <div className="min-h-screen bg-background text-foreground font-sans antialiased transition-colors duration-300">
       {/* Header */}
       <Header lang={lang} setLang={setLang} />
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-slate-950">
         {/* Background Image Carousel with Fade Animation */}
         {heroSlides.map((slide, index) => (
           <div
@@ -308,7 +308,7 @@ export default function Home() {
               onClick={() => scrollToSection("contact")}
               variant="outline"
               size="lg"
-              className="text-white border-slate-700 hover:bg-slate-900 hover:border-slate-500 px-8 py-6 rounded-lg w-full sm:w-auto"
+              className="bg-transparent! text-white! border-slate-700 hover:bg-slate-900! hover:border-slate-500 hover:text-white! px-8 py-6 rounded-lg w-full sm:w-auto"
             >
               {t.nav.contact}
             </Button>
@@ -347,30 +347,30 @@ export default function Home() {
       </section>
 
       {/* Quick Credentials / Stats Grid */}
-      <section className="relative z-20 bg-slate-900 border-y border-slate-800/60 py-10">
+      <section className="relative z-20 bg-slate-100 dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800/60 py-10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-            <div className="p-4 space-y-1.5 border-r border-slate-800 last:border-0">
-              <div className="text-3xl sm:text-4xl font-extrabold text-white">Tk. 2 Crore</div>
-              <div className="text-xs sm:text-sm text-slate-400 font-semibold uppercase tracking-wider">
+            <div className="p-4 space-y-1.5 border-r border-slate-200 dark:border-slate-800 last:border-0">
+              <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Tk. 2 Crore</div>
+              <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                 {lang === "en" ? "Authorized Capital" : "অনুমোদিত মূলধন"}
               </div>
             </div>
-            <div className="p-4 space-y-1.5 border-r border-slate-800 last:border-0">
-              <div className="text-3xl sm:text-4xl font-extrabold text-emerald-400">100%</div>
-              <div className="text-xs sm:text-sm text-slate-400 font-semibold uppercase tracking-wider">
+            <div className="p-4 space-y-1.5 border-r border-slate-200 dark:border-slate-800 last:border-0">
+              <div className="text-3xl sm:text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">100%</div>
+              <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                 {lang === "en" ? "Legal Transparency" : "আইনি স্বচ্ছতা"}
               </div>
             </div>
-            <div className="p-4 space-y-1.5 border-r border-slate-800 last:border-0">
-              <div className="text-3xl sm:text-4xl font-extrabold text-white">RAJUK</div>
-              <div className="text-xs sm:text-sm text-slate-400 font-semibold uppercase tracking-wider">
+            <div className="p-4 space-y-1.5 border-r border-slate-200 dark:border-slate-800 last:border-0">
+              <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">RAJUK</div>
+              <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                 {lang === "en" ? "Compliant Standards" : "অনুমোদিত কাঠামো"}
               </div>
             </div>
             <div className="p-4 space-y-1.5">
-              <div className="text-3xl sm:text-4xl font-extrabold text-emerald-400">Joint Venture</div>
-              <div className="text-xs sm:text-sm text-slate-400 font-semibold uppercase tracking-wider">
+              <div className="text-3xl sm:text-4xl font-extrabold text-emerald-600 dark:text-emerald-400">Joint Venture</div>
+              <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                 {lang === "en" ? "Landowner Focus" : "যৌথ উদ্যোগ পার্টনার"}
               </div>
             </div>
@@ -379,54 +379,54 @@ export default function Home() {
       </section>
 
       {/* Core Services Section */}
-      <section className="py-24 bg-slate-950">
+      <section className="py-24 bg-background transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold font-sans text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold font-sans text-slate-900 dark:text-white">
               {t.services.title}
             </h2>
             <div className="h-1 w-20 bg-gradient-to-r from-emerald-400 to-teal-500 mx-auto rounded-full" />
-            <p className="text-slate-400 text-base leading-relaxed">
+            <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed">
               {t.services.subtitle}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Service 1: Apartments */}
-            <div className="bg-slate-900/50 border border-slate-800/80 p-8 rounded-2xl flex flex-col items-start gap-4 hover:border-slate-700/80 transition-all group">
-              <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+            <div className="bg-slate-100/60 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/80 p-8 rounded-2xl flex flex-col items-start gap-4 hover:border-slate-300 dark:hover:border-slate-700/80 transition-all group duration-300">
+              <div className="p-3 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-xl group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
                 <Building2 className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
                 {t.services.apartments}
               </h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
                 {t.services.apartmentsDesc}
               </p>
             </div>
 
             {/* Service 2: Land Shares */}
-            <div className="bg-slate-900/50 border border-slate-800/80 p-8 rounded-2xl flex flex-col items-start gap-4 hover:border-slate-700/80 transition-all group">
-              <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+            <div className="bg-slate-100/60 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/80 p-8 rounded-2xl flex flex-col items-start gap-4 hover:border-slate-300 dark:hover:border-slate-700/80 transition-all group duration-300">
+              <div className="p-3 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-xl group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
                 <Compass className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
                 {t.services.land}
               </h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
                 {t.services.landDesc}
               </p>
             </div>
 
             {/* Service 3: Joint Ventures */}
-            <div className="bg-slate-900/50 border border-slate-800/80 p-8 rounded-2xl flex flex-col items-start gap-4 hover:border-slate-700/80 transition-all group">
-              <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+            <div className="bg-slate-100/60 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/80 p-8 rounded-2xl flex flex-col items-start gap-4 hover:border-slate-300 dark:hover:border-slate-700/80 transition-all group duration-300">
+              <div className="p-3 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-xl group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
                 <Users className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
                 {t.services.ventures}
               </h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
                 {t.services.venturesDesc}
               </p>
             </div>
@@ -435,14 +435,14 @@ export default function Home() {
       </section>
 
       {/* Projects Showcase Section */}
-      <section id="projects" className="py-24 bg-slate-900/35 border-y border-slate-900">
+      <section id="projects" className="py-24 bg-slate-50/50 dark:bg-slate-900/35 border-y border-slate-200 dark:border-slate-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold font-sans text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold font-sans text-slate-900 dark:text-white">
               {t.projects.title}
             </h2>
             <div className="h-1 w-20 bg-gradient-to-r from-emerald-400 to-teal-500 mx-auto rounded-full" />
-            <p className="text-slate-400 text-base leading-relaxed">
+            <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed">
               {t.projects.subtitle}
             </p>
           </div>
@@ -450,17 +450,17 @@ export default function Home() {
           {/* Filtering Tabs */}
           <div className="flex justify-center mb-12">
             <Tabs value={projectFilter} onValueChange={(val) => setProjectFilter(val as any)} className="w-fit">
-              <TabsList className="bg-slate-900 border border-slate-800 p-1 rounded-xl">
-                <TabsTrigger value="all" className="rounded-lg px-5 py-2 text-xs sm:text-sm text-slate-400 data-[state=active]:bg-emerald-500 data-[state=active]:text-white transition-all">
+              <TabsList className="bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-1 rounded-xl">
+                <TabsTrigger value="all" className="rounded-lg px-5 py-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 data-active:bg-emerald-500! data-active:text-white! transition-all">
                   {t.projects.all}
                 </TabsTrigger>
-                <TabsTrigger value="ongoing" className="rounded-lg px-5 py-2 text-xs sm:text-sm text-slate-400 data-[state=active]:bg-emerald-500 data-[state=active]:text-white transition-all">
+                <TabsTrigger value="ongoing" className="rounded-lg px-5 py-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 data-active:bg-emerald-500! data-active:text-white! transition-all">
                   {t.projects.status.ongoing}
                 </TabsTrigger>
-                <TabsTrigger value="upcoming" className="rounded-lg px-5 py-2 text-xs sm:text-sm text-slate-400 data-[state=active]:bg-emerald-500 data-[state=active]:text-white transition-all">
+                <TabsTrigger value="upcoming" className="rounded-lg px-5 py-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 data-active:bg-emerald-500! data-active:text-white! transition-all">
                   {t.projects.status.upcoming}
                 </TabsTrigger>
-                <TabsTrigger value="completed" className="rounded-lg px-5 py-2 text-xs sm:text-sm text-slate-400 data-[state=active]:bg-emerald-500 data-[state=active]:text-white transition-all">
+                <TabsTrigger value="completed" className="rounded-lg px-5 py-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 data-active:bg-emerald-500! data-active:text-white! transition-all">
                   {t.projects.status.completed}
                 </TabsTrigger>
               </TabsList>
@@ -488,50 +488,50 @@ export default function Home() {
       </section>
 
       {/* Landowners / Joint Venture Portal */}
-      <section id="landowners" className="py-24 bg-slate-950">
+      <section id="landowners" className="py-24 bg-background transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left: Why Us Content */}
             <div className="space-y-8">
               <div className="space-y-4">
-                <span className="text-xs sm:text-sm font-bold text-emerald-400 uppercase tracking-widest block">
+                <span className="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest block">
                   {t.landowner.title}
                 </span>
-                <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-sans leading-tight">
+                <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white font-sans leading-tight">
                   {lang === "en" ? "Turn Your Plot Into a Landmark" : "আপনার মূল্যবান জমিকে দৃষ্টিনন্দন ল্যান্ডমার্কে রূপ দিন"}
                 </h2>
                 <div className="h-1 w-20 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full" />
-                <p className="text-slate-400 text-base leading-relaxed">
+                <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed">
                   {t.landowner.subtitle}
                 </p>
               </div>
 
               <div className="space-y-5">
-                <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                  <Award className="h-5 w-5 text-emerald-400" />
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <Award className="h-5 w-5 text-emerald-500 dark:text-emerald-400" />
                   <span>{t.landowner.whyUs}</span>
                 </h3>
 
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="text-white font-semibold text-sm">{t.landowner.reason1Title}</h4>
-                      <p className="text-slate-400 text-xs sm:text-sm mt-0.5">{t.landowner.reason1Desc}</p>
+                      <h4 className="text-slate-900 dark:text-white font-semibold text-sm">{t.landowner.reason1Title}</h4>
+                      <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">{t.landowner.reason1Desc}</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="text-white font-semibold text-sm">{t.landowner.reason2Title}</h4>
-                      <p className="text-slate-400 text-xs sm:text-sm mt-0.5">{t.landowner.reason2Desc}</p>
+                      <h4 className="text-slate-900 dark:text-white font-semibold text-sm">{t.landowner.reason2Title}</h4>
+                      <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">{t.landowner.reason2Desc}</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="text-white font-semibold text-sm">{t.landowner.reason3Title}</h4>
-                      <p className="text-slate-400 text-xs sm:text-sm mt-0.5">{t.landowner.reason3Desc}</p>
+                      <h4 className="text-slate-900 dark:text-white font-semibold text-sm">{t.landowner.reason3Title}</h4>
+                      <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">{t.landowner.reason3Desc}</p>
                     </div>
                   </li>
                 </ul>
@@ -539,18 +539,18 @@ export default function Home() {
             </div>
 
             {/* Right: Proposal Form Card */}
-            <div className="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl relative overflow-hidden">
+            <div className="bg-slate-100/60 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl shadow-xl relative overflow-hidden transition-colors duration-300">
               <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-emerald-500/10 to-transparent pointer-events-none rounded-tr-2xl" />
               
               <div className="space-y-2 mb-6">
-                <h3 className="text-xl font-bold text-white">{t.landowner.formTitle}</h3>
-                <p className="text-xs text-slate-400">{t.landowner.formSubtitle}</p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">{t.landowner.formTitle}</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">{t.landowner.formSubtitle}</p>
               </div>
 
               {jvSuccess ? (
                 <div className="flex flex-col items-center justify-center py-10 text-center space-y-4 animate-in zoom-in-95 duration-200">
-                  <CheckCircle className="h-16 w-16 text-emerald-400" />
-                  <p className="text-sm text-emerald-400 font-semibold max-w-xs">
+                  <CheckCircle className="h-16 w-16 text-emerald-500 dark:text-emerald-400" />
+                  <p className="text-sm text-emerald-600 dark:text-emerald-400 font-semibold max-w-xs">
                     {t.landowner.success}
                   </p>
                 </div>
@@ -558,21 +558,21 @@ export default function Home() {
                 <form onSubmit={handleJvSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label htmlFor="jv-name" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                      <label htmlFor="jv-name" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                         {t.landowner.name} <span className="text-rose-500">*</span>
                       </label>
                       <Input
                         id="jv-name"
                         required
                         placeholder={lang === "en" ? "e.g. John Doe" : "যেমন: আব্দুর রহমান"}
-                        className="bg-slate-950 border-slate-800 text-white placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
+                        className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
                         value={jvForm.name}
                         onChange={(e) => setJvForm({ ...jvForm, name: e.target.value })}
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="jv-phone" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                      <label htmlFor="jv-phone" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                         {t.landowner.phone} <span className="text-rose-500">*</span>
                       </label>
                       <Input
@@ -580,7 +580,7 @@ export default function Home() {
                         required
                         type="tel"
                         placeholder={lang === "en" ? "e.g. 017XXXXXXXX" : "যেমন: ০১৭XXXXXXXX"}
-                        className="bg-slate-950 border-slate-800 text-white placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
+                        className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
                         value={jvForm.phone}
                         onChange={(e) => setJvForm({ ...jvForm, phone: e.target.value })}
                       />
@@ -588,14 +588,14 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="jv-location" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="jv-location" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       {t.landowner.location} <span className="text-rose-500">*</span>
                     </label>
                     <Input
                       id="jv-location"
                       required
                       placeholder={lang === "en" ? "e.g. West Shewrapara, Mirpur" : "যেমন: পশ্চিম শেওড়াপাড়া, মিরপুর"}
-                      className="bg-slate-950 border-slate-800 text-white placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
+                      className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
                       value={jvForm.location}
                       onChange={(e) => setJvForm({ ...jvForm, location: e.target.value })}
                     />
@@ -603,26 +603,26 @@ export default function Home() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label htmlFor="jv-size" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                      <label htmlFor="jv-size" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                         {t.landowner.size}
                       </label>
                       <Input
                         id="jv-size"
                         placeholder={lang === "en" ? "e.g. 5 Katha" : "যেমন: ৫ কাঠা"}
-                        className="bg-slate-950 border-slate-800 text-white placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
+                        className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
                         value={jvForm.size}
                         onChange={(e) => setJvForm({ ...jvForm, size: e.target.value })}
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="jv-road" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                      <label htmlFor="jv-road" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                         {t.landowner.roadWidth}
                       </label>
                       <Input
                         id="jv-road"
                         placeholder={lang === "en" ? "e.g. 20 Feet" : "যেমন: ২০ ফুট"}
-                        className="bg-slate-950 border-slate-800 text-white placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
+                        className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
                         value={jvForm.roadWidth}
                         onChange={(e) => setJvForm({ ...jvForm, roadWidth: e.target.value })}
                       />
@@ -630,14 +630,14 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="jv-notes" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="jv-notes" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       {t.landowner.notes}
                     </label>
                     <Textarea
                       id="jv-notes"
                       rows={3}
                       placeholder={lang === "en" ? "Any special directions, land type, corner plot info, etc." : "জমির ধরণ, কর্নার প্লট কি না বা অন্য কোনো বিশেষ তথ্য।"}
-                      className="bg-slate-950 border-slate-800 text-white placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500 resize-none"
+                      className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500 resize-none"
                       value={jvForm.notes}
                       onChange={(e) => setJvForm({ ...jvForm, notes: e.target.value })}
                     />
@@ -662,28 +662,28 @@ export default function Home() {
       </section>
 
       {/* About Us & Profile Section */}
-      <section id="about" className="py-24 bg-slate-900/35 border-t border-slate-900">
+      <section id="about" className="py-24 bg-slate-50/50 dark:bg-slate-900/35 border-t border-slate-200 dark:border-slate-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left Column: Background Info */}
             <div className="space-y-6">
-              <span className="text-xs sm:text-sm font-bold text-emerald-400 uppercase tracking-widest block">
+              <span className="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest block">
                 {lang === "en" ? "Foundation & History" : "প্রতিষ্ঠা ও ইতিহাস"}
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white font-sans">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white font-sans">
                 {t.about.title}
               </h2>
               <div className="h-1 w-20 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full" />
-              <div className="text-slate-400 text-sm leading-relaxed space-y-4">
+              <div className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed space-y-4">
                 <p>{t.about.desc1}</p>
                 <p>{t.about.desc2}</p>
               </div>
-              <div className="p-5 bg-slate-900 border border-slate-800 rounded-xl space-y-2">
-                <h4 className="text-white font-semibold text-sm flex items-center gap-2">
-                  <BookOpen className="h-4 w-4 text-emerald-400" />
+              <div className="p-5 bg-slate-100/60 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2 transition-colors duration-300">
+                <h4 className="text-slate-900 dark:text-white font-semibold text-sm flex items-center gap-2">
+                  <BookOpen className="h-4 w-4 text-emerald-500 dark:text-emerald-400" />
                   <span>{lang === "en" ? "Vitti Objectives Highlights" : "ভিত্তি এর লক্ষ্য ও উদ্দেশ্যসমূহ"}</span>
                 </h4>
-                <ul className="text-xs text-slate-500 space-y-1.5 list-disc pl-4 leading-relaxed">
+                <ul className="text-xs text-slate-600 dark:text-slate-500 space-y-1.5 list-disc pl-4 leading-relaxed">
                   <li>{lang === "en" ? "Multi-storied residential building & commercial plaza construction" : "বহুতল আবাসিক ও বাণিজ্যিক ভবন এবং শপিং প্লাজা নির্মাণ"}</li>
                   <li>{lang === "en" ? "Real Estate contractors, land developers & engineers" : "রিয়েল এস্টেট ঠিকাদার, ভূমি উন্নয়নকারী ও পরামর্শক প্রকৌশলী"}</li>
                   <li>{lang === "en" ? "Agro-biased production and building materials trade (Cement, Tile, fittings)" : "অ্যাগ্রো ভিত্তিক উৎপাদন ও নির্মাণ সামগ্রী বিপণন (সিমেন্ট, টাইলস, ফিটিংস)"}</li>
@@ -695,10 +695,10 @@ export default function Home() {
             {/* Right Column: Board of Directors Profiles */}
             <div className="space-y-8">
               <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white uppercase tracking-wider">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                   {t.about.leadership}
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   {lang === "en" ? "Experienced corporate leaders directing Vitti's growth" : "অভিজ্ঞ বোর্ড পর্ষদ যা ভিত্তি এর নির্ভরযোগ্য অগ্রগতি নিশ্চিত করছে"}
                 </p>
               </div>
@@ -707,21 +707,21 @@ export default function Home() {
                 {t.about.directors.map((dir, idx) => (
                   <div
                     key={idx}
-                    className="bg-slate-900 border border-slate-800/80 p-6 rounded-xl flex flex-col sm:flex-row items-start gap-4 hover:border-slate-700 transition-colors"
+                    className="bg-slate-100/60 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 p-6 rounded-xl flex flex-col sm:flex-row items-start gap-4 hover:border-slate-300 dark:hover:border-slate-700 transition-colors duration-300"
                   >
                     {/* Stylized Initial Logo for Avatar */}
-                    <div className="w-12 h-12 bg-gradient-to-br from-slate-800 to-slate-950 border border-slate-700/60 rounded-xl flex items-center justify-center text-emerald-400 font-extrabold text-lg shrink-0 shadow">
+                    <div className="w-12 h-12 bg-gradient-to-br from-slate-200 to-slate-100 dark:from-slate-800 dark:to-slate-950 border border-slate-300 dark:border-slate-700/60 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-extrabold text-lg shrink-0 shadow">
                       {dir.name.split(" ").slice(-1)[0][0] || "D"}
                     </div>
                     
                     <div className="space-y-1">
                       <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                        <h4 className="text-white font-bold text-base">{dir.name}</h4>
-                        <span className="text-[10px] uppercase font-bold tracking-widest text-emerald-400 bg-emerald-950/40 border border-emerald-900/40 px-2 py-0.5 rounded w-fit">
+                        <h4 className="text-slate-900 dark:text-white font-bold text-base">{dir.name}</h4>
+                        <span className="text-[10px] uppercase font-bold tracking-widest text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/40 px-2 py-0.5 rounded w-fit">
                           {dir.role}
                         </span>
                       </div>
-                      <p className="text-slate-400 text-xs leading-relaxed mt-1.5">
+                      <p className="text-slate-505 dark:text-slate-400 text-xs leading-relaxed mt-1.5">
                         {dir.bio}
                       </p>
                     </div>
@@ -734,42 +734,42 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-slate-950 border-t border-slate-900">
+      <section id="contact" className="py-24 bg-background border-t border-slate-200 dark:border-slate-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             {/* Left: Contact Info card */}
             <div className="space-y-8">
               <div className="space-y-4">
-                <span className="text-xs sm:text-sm font-bold text-emerald-400 uppercase tracking-widest block">
+                <span className="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest block">
                   {lang === "en" ? "Immediate Assistance" : "তাৎক্ষণিক সহায়তা"}
                 </span>
-                <h2 className="text-3xl sm:text-4xl font-bold text-white font-sans">
+                <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white font-sans">
                   {t.contact.subtitle}
                 </h2>
                 <div className="h-1 w-20 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full" />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-slate-900 border border-slate-800/80 p-6 rounded-xl space-y-3">
-                  <div className="w-10 h-10 bg-emerald-500/10 text-emerald-400 rounded-lg flex items-center justify-center">
+                <div className="bg-slate-100/60 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 p-6 rounded-xl space-y-3 transition-colors duration-300">
+                  <div className="w-10 h-10 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold text-sm">{t.contact.office}</h4>
-                    <p className="text-slate-400 text-xs sm:text-sm mt-1 leading-relaxed">
+                    <h4 className="text-slate-900 dark:text-white font-bold text-sm">{t.contact.office}</h4>
+                    <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-1 leading-relaxed">
                       {lang === "en" ? "Kafrul / Shewrapara, Mirpur, Dhaka-1206, Bangladesh" : "কাফরুল / শেওড়াপাড়া, মিরপুর, ঢাকা-১২০৬, বাংলাদেশ"}
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-slate-900 border border-slate-800/80 p-6 rounded-xl space-y-3">
-                  <div className="w-10 h-10 bg-emerald-500/10 text-emerald-400 rounded-lg flex items-center justify-center">
+                <div className="bg-slate-100/60 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 p-6 rounded-xl space-y-3 transition-colors duration-300">
+                  <div className="w-10 h-10 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center">
                     <Phone className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold text-sm">{t.contact.phone}</h4>
-                    <p className="text-slate-400 text-xs sm:text-sm mt-1">
-                      <a href="tel:+8801700000000" className="hover:text-emerald-400 transition-colors">
+                    <h4 className="text-slate-900 dark:text-white font-bold text-sm">{t.contact.phone}</h4>
+                    <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-1">
+                      <a href="tel:+8801700000000" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
                         +880 1700-000000
                       </a>
                     </p>
@@ -778,13 +778,13 @@ export default function Home() {
               </div>
 
               {/* Graphical Map representation in UI instead of default frame */}
-              <div className="bg-slate-900 border border-slate-800 rounded-2xl h-64 relative overflow-hidden flex flex-col justify-end p-6">
+              <div className="bg-slate-100/60 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl h-64 relative overflow-hidden flex flex-col justify-end p-6 transition-colors duration-300">
                 {/* SVG Abstract Grid Pattern mimicking city roads */}
                 <div className="absolute inset-0 opacity-15">
                   <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                     <defs>
                       <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1" />
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" className="text-slate-400 dark:text-white" strokeWidth="1" />
                       </pattern>
                     </defs>
                     <rect width="100%" height="100%" fill="url(#grid)" />
@@ -803,11 +803,11 @@ export default function Home() {
                   <div className="w-3 h-3 bg-emerald-500 rounded-full animate-ping mt-1" />
                 </div>
 
-                <div className="relative z-10 space-y-1.5 bg-slate-950/80 backdrop-blur-md border border-slate-800/80 p-4 rounded-xl">
-                  <h4 className="text-white font-bold text-xs">
+                <div className="relative z-10 space-y-1.5 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border border-slate-200 dark:border-slate-800/80 p-4 rounded-xl transition-colors duration-300">
+                  <h4 className="text-slate-900 dark:text-white font-bold text-xs">
                     {lang === "en" ? "Corporate Coverage Area" : "কর্পোরেট কভারেজ এলাকা"}
                   </h4>
-                  <p className="text-slate-400 text-[11px] leading-relaxed">
+                  <p className="text-slate-500 dark:text-slate-400 text-[11px] leading-relaxed">
                     {lang === "en" ? "Covering prime spots including Mirpur, Shewrapara, Kafrul, and Uttar Khan." : "মিরপুর, শেওড়াপাড়া, কাফরুল ও উত্তরখান সহ ঢাকার শীর্ষস্থানীয় সকল জোনে আমাদের কাজ চলছে।"}
                   </p>
                 </div>
@@ -815,34 +815,34 @@ export default function Home() {
             </div>
 
             {/* Right: Message Form Card */}
-            <div className="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-xl">
-              <h3 className="text-xl font-bold text-white mb-6">{t.contact.formTitle}</h3>
+            <div className="bg-slate-100/60 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl shadow-xl transition-colors duration-300">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">{t.contact.formTitle}</h3>
 
               {contactSuccess ? (
                 <div className="flex flex-col items-center justify-center py-10 text-center space-y-4 animate-in zoom-in-95 duration-200">
-                  <CheckCircle className="h-16 w-16 text-emerald-400" />
-                  <p className="text-sm text-emerald-400 font-semibold">
+                  <CheckCircle className="h-16 w-16 text-emerald-500 dark:text-emerald-400" />
+                  <p className="text-sm text-emerald-600 dark:text-emerald-400 font-semibold">
                     {t.contact.success}
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleContactSubmit} className="space-y-4">
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-name" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="contact-name" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
                       {t.contact.name} <span className="text-rose-500">*</span>
                     </label>
                     <Input
                       id="contact-name"
                       required
                       placeholder={lang === "en" ? "e.g. John Doe" : "যেমন: আব্দুর রহমান"}
-                      className="bg-slate-950 border-slate-800 text-white placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
+                      className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
                       value={contactForm.name}
                       onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-phone" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="contact-phone" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
                       {t.contact.phone} <span className="text-rose-500">*</span>
                     </label>
                     <Input
@@ -850,38 +850,38 @@ export default function Home() {
                       required
                       type="tel"
                       placeholder={lang === "en" ? "e.g. 017XXXXXXXX" : "যেমন: ০১৭XXXXXXXX"}
-                      className="bg-slate-950 border-slate-800 text-white placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
+                      className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
                       value={contactForm.phone}
                       onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-interest" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="contact-interest" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
                       {t.contact.interest}
                     </label>
                     <select
                       id="contact-interest"
-                      className="w-full bg-slate-950 border border-slate-800 text-white rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
+                      className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500"
                       value={contactForm.interest}
                       onChange={(e) => setContactForm({ ...contactForm, interest: e.target.value })}
                     >
-                      <option value="flat">{t.contact.interestOptions.flat}</option>
-                      <option value="share">{t.contact.interestOptions.share}</option>
-                      <option value="joint">{t.contact.interestOptions.joint}</option>
-                      <option value="other">{t.contact.interestOptions.other}</option>
+                      <option value="flat" className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">{t.contact.interestOptions.flat}</option>
+                      <option value="share" className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">{t.contact.interestOptions.share}</option>
+                      <option value="joint" className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">{t.contact.interestOptions.joint}</option>
+                      <option value="other" className="bg-white dark:bg-slate-950 text-slate-900 dark:text-white">{t.contact.interestOptions.other}</option>
                     </select>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-msg" className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="contact-msg" className="text-[10px] font-bold text-slate-555 dark:text-slate-400 uppercase tracking-wider">
                       {t.contact.msg}
                     </label>
                     <Textarea
                       id="contact-msg"
                       rows={4}
                       placeholder={lang === "en" ? "Write your query here..." : "আপনার বার্তাটি এখানে লিখুন..."}
-                      className="bg-slate-950 border-slate-800 text-white placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500 resize-none"
+                      className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500 resize-none"
                       value={contactForm.message}
                       onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
                     />
