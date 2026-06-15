@@ -37,7 +37,7 @@ export default function ProjectCard({ project, lang, onInquire }: ProjectCardPro
   const location = lang === "en" ? project.locationEn : project.locationBn;
   const size = lang === "en" ? project.sizeEn : project.sizeBn;
   const price = lang === "en" ? project.priceEn : project.priceBn;
-  
+
   const statusLabels = {
     ongoing: t.projects.status.ongoing,
     upcoming: t.projects.status.upcoming,
@@ -83,7 +83,7 @@ export default function ProjectCard({ project, lang, onInquire }: ProjectCardPro
         <h3 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white line-clamp-1 mb-2 font-sans group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
           {title}
         </h3>
-        
+
         {/* Location */}
         <div className="flex items-center text-xs text-slate-500 dark:text-slate-400 mb-4">
           <MapPin className="h-3.5 w-3.5 mr-1 text-emerald-500 dark:text-emerald-400 shrink-0" />

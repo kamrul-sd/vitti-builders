@@ -47,11 +47,10 @@ export default function Header({ lang, setLang }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? "bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-lg py-3"
           : "bg-white/45 dark:bg-transparent backdrop-blur-md dark:backdrop-blur-none border-b border-slate-200/10 dark:border-transparent py-5"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -143,7 +142,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
             </Button>
 
             <ThemeToggle />
-            
+
             <Button
               onClick={() => scrollToSection("landowners")}
               className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white border-0 shadow-lg shadow-emerald-500/25"

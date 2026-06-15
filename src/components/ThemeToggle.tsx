@@ -51,19 +51,17 @@ export default function ThemeToggle() {
       <div className="relative w-5 h-5 flex items-center justify-center">
         {/* Sun Icon */}
         <Sun
-          className={`h-5 w-5 absolute transition-all duration-500 transform ${
-            theme === "dark"
+          className={`h-5 w-5 absolute transition-all duration-500 transform ${theme === "dark"
               ? "rotate-90 scale-0 opacity-0"
               : "rotate-0 scale-100 opacity-100 text-amber-600"
-          }`}
+            }`}
         />
         {/* Moon Icon */}
         <Moon
-          className={`h-5 w-5 absolute transition-all duration-500 transform ${
-            theme === "dark"
+          className={`h-5 w-5 absolute transition-all duration-500 transform ${theme === "dark"
               ? "rotate-0 scale-100 opacity-100 text-emerald-400"
               : "-rotate-90 scale-0 opacity-0"
-          }`}
+            }`}
         />
       </div>
     </Button>
