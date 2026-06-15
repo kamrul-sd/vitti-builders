@@ -260,13 +260,13 @@ export default function Home() {
       <Header lang={lang} setLang={setLang} />
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-slate-950">
+      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
         {/* Background Image Carousel with Fade Animation */}
         {heroSlides.map((slide, index) => (
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === heroIndex ? "opacity-35 z-0" : "opacity-0 z-0"
+              index === heroIndex ? "opacity-90 dark:opacity-35 z-0" : "opacity-0 z-0"
             }`}
           >
             <Image
@@ -276,23 +276,23 @@ export default function Home() {
               priority={index === 0}
               className="object-cover object-center"
             />
-            {/* Dark Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/20" />
+            {/* Overlay Gradient (dynamic slate/slate-950 shade) */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-100/80 via-transparent to-slate-100/10 dark:from-slate-950 dark:via-slate-950/70 dark:to-slate-950/20 transition-all duration-300" />
           </div>
         ))}
 
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-          <div className="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/25 px-4 py-1.5 rounded-full text-emerald-400 text-xs sm:text-sm font-semibold tracking-wide uppercase animate-pulse">
+        {/* Hero Content with dynamic glassmorphic card backing in light mode */}
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-10 sm:p-12 text-center space-y-6 bg-white/75 dark:bg-transparent backdrop-blur-md dark:backdrop-blur-none border border-slate-200/30 dark:border-transparent rounded-3xl shadow-xl dark:shadow-none transition-all duration-300">
+          <div className="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/25 px-4 py-1.5 rounded-full text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-semibold tracking-wide uppercase animate-pulse">
             <Building2 className="h-4 w-4 shrink-0" />
             <span>{lang === "en" ? "Real Estate Developers" : "রিয়েল এস্টেট ডেভেলপার"}</span>
           </div>
           
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-none font-sans drop-shadow-md">
+          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-none font-sans drop-shadow-md transition-colors duration-300">
             {heroSlides[heroIndex].title}
           </h1>
           
-          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed drop-shadow-sm">
+          <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed drop-shadow-sm transition-colors duration-300">
             {heroSlides[heroIndex].desc}
           </p>
 
@@ -308,7 +308,7 @@ export default function Home() {
               onClick={() => scrollToSection("contact")}
               variant="outline"
               size="lg"
-              className="bg-transparent! text-white! border-slate-700 hover:bg-slate-900! hover:border-slate-500 hover:text-white! px-8 py-6 rounded-lg w-full sm:w-auto"
+              className="text-slate-900 dark:text-white border-slate-400 dark:border-slate-700 bg-transparent! hover:bg-slate-200/50 dark:hover:bg-slate-900/60 transition-all px-8 py-6 rounded-lg w-full sm:w-auto"
             >
               {t.nav.contact}
             </Button>
@@ -318,14 +318,14 @@ export default function Home() {
         {/* Carousel Nav Controls */}
         <button
           onClick={handlePrevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-900/40 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800/80 transition-all z-20"
+          className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/40 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/80 transition-all z-20"
           aria-label="Previous Slide"
         >
           <ChevronLeft className="h-6 w-6" />
         </button>
         <button
           onClick={handleNextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-900/40 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800/80 transition-all z-20"
+          className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/40 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/80 transition-all z-20"
           aria-label="Next Slide"
         >
           <ChevronRight className="h-6 w-6" />
@@ -338,7 +338,7 @@ export default function Home() {
               key={index}
               onClick={() => setHeroIndex(index)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                index === heroIndex ? "w-8 bg-emerald-400" : "w-2 bg-slate-700"
+                index === heroIndex ? "w-8 bg-emerald-500 dark:bg-emerald-400" : "w-2 bg-slate-300 dark:bg-slate-700"
               }`}
               aria-label={`Slide ${index + 1}`}
             />

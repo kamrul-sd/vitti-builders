@@ -50,7 +50,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-lg py-3"
-          : "bg-transparent py-5"
+          : "bg-white/45 dark:bg-transparent backdrop-blur-md dark:backdrop-blur-none border-b border-slate-200/10 dark:border-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,10 +87,10 @@ export default function Header({ lang, setLang }: HeaderProps) {
               </svg>
             </div>
             <div>
-              <span className={`text-xl font-bold tracking-tight font-sans flex items-center gap-1 transition-colors duration-300 ${isScrolled ? "text-slate-900 dark:text-white" : "text-white"}`}>
-                VITTI <span className="text-emerald-500 dark:text-emerald-400 font-light">BUILDERS</span>
+              <span className="text-xl font-bold tracking-tight font-sans flex items-center gap-1 transition-colors duration-300 text-slate-900 dark:text-white">
+                VITTI <span className="text-emerald-600 dark:text-emerald-400 font-light">BUILDERS</span>
               </span>
-              <span className={`block text-[9px] uppercase tracking-widest font-semibold leading-none transition-colors duration-300 ${isScrolled ? "text-slate-500 dark:text-slate-400" : "text-slate-400"}`}>
+              <span className="block text-[9px] uppercase tracking-widest font-bold leading-none transition-colors duration-300 text-slate-700 dark:text-slate-400">
                 {lang === "en" ? "Foundation of Trust" : "বিশ্বস্ততার ভিত্তি"}
               </span>
             </div>
@@ -100,31 +100,31 @@ export default function Header({ lang, setLang }: HeaderProps) {
           <nav className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection("home")}
-              className={`text-sm font-medium hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
+              className="text-sm font-semibold hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-slate-900 dark:text-slate-200"
             >
               {t.nav.home}
             </button>
             <button
               onClick={() => scrollToSection("projects")}
-              className={`text-sm font-medium hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
+              className="text-sm font-semibold hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-slate-900 dark:text-slate-200"
             >
               {t.nav.projects}
             </button>
             <button
               onClick={() => scrollToSection("landowners")}
-              className={`text-sm font-medium hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
+              className="text-sm font-semibold hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-slate-900 dark:text-slate-200"
             >
               {t.nav.landowners}
             </button>
             <button
               onClick={() => scrollToSection("about")}
-              className={`text-sm font-medium hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
+              className="text-sm font-semibold hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-slate-900 dark:text-slate-200"
             >
               {t.nav.about}
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className={`text-sm font-medium hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
+              className="text-sm font-semibold hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-slate-900 dark:text-slate-200"
             >
               {t.nav.contact}
             </button>
@@ -136,7 +136,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
               variant="ghost"
               size="sm"
               onClick={() => setLang(lang === "en" ? "bn" : "en")}
-              className={`hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 flex items-center gap-2 transition-colors duration-300 ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
+              className="border-0 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 flex items-center gap-2 transition-colors duration-300 text-slate-900 dark:text-slate-200 font-semibold"
             >
               <Globe className="h-4 w-4" />
               <span>{lang === "en" ? "বাংলা" : "English"}</span>
@@ -158,7 +158,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
               variant="ghost"
               size="sm"
               onClick={() => setLang(lang === "en" ? "bn" : "en")}
-              className={`hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 p-2 transition-colors duration-300 ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
+              className="border-0 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 p-2 transition-colors duration-300 text-slate-900 dark:text-slate-200"
             >
               <Globe className="h-5 w-5" />
             </Button>
@@ -167,7 +167,7 @@ export default function Header({ lang, setLang }: HeaderProps) {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`hover:text-emerald-500 dark:hover:text-white p-2 transition-colors duration-300 ${isScrolled ? "text-slate-700 dark:text-slate-300" : "text-slate-300"}`}
+              className="border-0 hover:text-emerald-600 dark:hover:text-white p-2 transition-colors duration-300 text-slate-900 dark:text-slate-200"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
