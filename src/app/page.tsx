@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Language, translations } from "@/utils/translations";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ProjectCard, { ProjectData } from "@/components/ProjectCard";
+import ProjectCard from "@/components/ProjectCard";
 import InquiryDialog from "@/components/InquiryDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,103 +18,18 @@ import {
   CheckCircle,
   ChevronLeft,
   ChevronRight,
-  Send,
   Loader2,
   Calendar,
   Layers,
   MapPin,
-  TrendingUp,
   Award,
   BookOpen,
   Phone
 } from "lucide-react";
-
-// Mock Projects database aligned with Memorandum/Articles data
-const PROJECTS_DATA: ProjectData[] = [
-  {
-    id: "vitti-rose-garden",
-    titleEn: "Vitti Rose Garden",
-    titleBn: "ভিত্তি রোজ গার্ডেন",
-    locationEn: "17, West Shewrapara, Mirpur, Dhaka-1206",
-    locationBn: "১৭, পশ্চিম শেওড়াপাড়া, মিরপুর, ঢাকা-১২০৬",
-    type: "apartment",
-    status: "ongoing",
-    sizeEn: "1,450 - 1,850 SFT",
-    sizeBn: "১,৪৫০ - ১,৮৫০ বর্গফুট",
-    priceEn: "Tk. 7,500 / SFT",
-    priceBn: "৭,৫০০ টাকা / বর্গফুট",
-    image: "/images/vitti_apartment_1.png",
-    featuresEn: ["Smart Card Lock", "24/7 Full Generator", "Rooftop Community Hall", "Earthquake Resistant Frame"],
-    featuresBn: ["স্মার্ট কার্ড লক", "২৪/৭ জেনারেটর সাপোর্ট", "ছাদ বাগান ও হল রুম", "ভূমিকম্প সহনশীল কাঠামো"]
-  },
-  {
-    id: "vitti-green-city",
-    titleEn: "Vitti Green City (Land Shares)",
-    titleBn: "ভিত্তি গ্রীন সিটি (জমির শেয়ার)",
-    locationEn: "240/D, Munda, Uttar Khan, Dhaka-1230",
-    locationBn: "২৪০/ডি, মুণ্ডা, উত্তরখান, ঢাকা-১২৩০",
-    type: "land",
-    status: "ongoing",
-    sizeEn: "3 Katha / Share",
-    sizeBn: "৩ কাঠা / শেয়ার",
-    priceEn: "Tk. 2,500,000 / Share",
-    priceBn: "২৫,০০,০০০ টাকা / শেয়ার",
-    image: "/images/vitti_land_1.png",
-    featuresEn: ["RAJUK Approved Layout", "30ft Paved Road access", "Near Airport Link Road", "Instant Share Registration"],
-    featuresBn: ["রাজউক অনুমোদিত লেআউট", "৩০ ফুট চওড়া পাকা রাস্তা", "এয়ারপোর্ট লিংক রোড সংলগ্ন", "তাৎক্ষণিক শেয়ার রেজিস্ট্রেশন"]
-  },
-  {
-    id: "vitti-grand-plaza",
-    titleEn: "Vitti Grand Plaza (Commercial)",
-    titleBn: "ভিত্তি গ্র্যান্ড প্লাজা (বাণিজ্যিক)",
-    locationEn: "654/1 Kafrul Ashidug, Dhaka Cantonment",
-    locationBn: "৬৫৪/১ কাফরুল আশীদুর্গ, ঢাকা সেনানিবাস",
-    type: "commercial",
-    status: "upcoming",
-    sizeEn: "2,500 - 6,000 SFT",
-    sizeBn: "২,৫০০ - ৬,০০০ বর্গফুট",
-    priceEn: "Tk. 18,000 / SFT",
-    priceBn: "১৮,০০০ টাকা / বর্গফুট",
-    image: "/images/vitti_commercial_1.png",
-    featuresEn: ["Central HVAC System", "Triple High-Speed Lifts", "LTST Panel & PFI Switchgear", "Glass Curtain Wall Facade"],
-    featuresBn: ["সেন্ট্রাল এসি ব্যবস্থা", "৩টি দ্রুতগতির লিফট", "এলটিএসটি প্যানেল ও সুইচ গিয়ার", "অভিজাত গ্লাস পর্দা ওয়াল"]
-  },
-  {
-    id: "vitti-banyan-shade",
-    titleEn: "Vitti Banyan Shade",
-    titleBn: "ভিত্তি বটমূল ছায়া",
-    locationEn: "Kafrul, Dhaka-1206",
-    locationBn: "কাফরুল, ঢাকা-১২০৬",
-    type: "apartment",
-    status: "completed",
-    sizeEn: "1,600 - 2,100 SFT",
-    sizeBn: "১,৬০০ - ২,১০০ বর্গফুট",
-    priceEn: "Tk. 8,200 / SFT",
-    priceBn: "৮,২০০ টাকা / বর্গফুট",
-    image: "/images/vitti_apartment_1.png",
-    featuresEn: ["Luxurious Reception Lobby", "Double Basement Parking", "Imported Sanitary Fittings", "Solar Backup Lighting"],
-    featuresBn: ["অভিজাত অভ্যর্থনা লাউঞ্জ", "দ্বিগুণ বেসমেন্ট পার্কিং", "আমদানিকৃত ফিটিংস", "সোলার পাওয়ার ব্যাকআপ"]
-  },
-  {
-    id: "vitti-riverside-plots",
-    titleEn: "Vitti Riverside Plots",
-    titleBn: "ভিত্তি রিভারসাইড প্লট",
-    locationEn: "Uttar Khan, Dhaka-1230",
-    locationBn: "উত্তরখান, ঢাকা-১২৩০",
-    type: "land",
-    status: "upcoming",
-    sizeEn: "5 Katha / Plot",
-    sizeBn: "৫ কাঠা / প্লট",
-    priceEn: "Tk. 4,500,000 / Plot",
-    priceBn: "৪৫,০০,০০০ টাকা / প্লট",
-    image: "/images/vitti_land_1.png",
-    featuresEn: ["100% High Land Fill", "Lakefront Community Park", "Demarcated Boundaries", "Utility Grid Connection Ready"],
-    featuresBn: ["১০০% ভরাট উচু ভূমি", "লেকফ্রন্ট পার্ক সুবিধা", "সীমানা প্রাচীর দিয়ে ঘেরা", "ইউটিলিটি সংযোগ প্রস্তুত"]
-  }
-];
+import type { Project } from "@/types";
 
 export default function Home() {
-  const [lang, setLang] = useState<Language>("bn"); // Defaulting to Bengali since target market is BD and bilingual is preferred
+  const [lang, setLang] = useState<Language>("bn"); // Defaulting to Bengali
   const t = translations[lang];
 
   // Hero carousel state
@@ -159,18 +74,38 @@ export default function Home() {
     setHeroIndex((prev) => (prev + 1) % heroSlides.length);
   };
 
-  // Projects filtering state
+  // Projects state & fetching
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [projectsLoading, setProjectsLoading] = useState(true);
   const [projectFilter, setProjectFilter] = useState<"all" | "ongoing" | "upcoming" | "completed">("all");
-  const filteredProjects = PROJECTS_DATA.filter((p) => {
+
+  useEffect(() => {
+    async function loadProjects() {
+      try {
+        const res = await fetch("/api/projects");
+        if (res.ok) {
+          const body = await res.json();
+          setProjects(body.data || []);
+        }
+      } catch (err) {
+        console.error("Failed to load projects:", err);
+      } finally {
+        setProjectsLoading(false);
+      }
+    }
+    loadProjects();
+  }, []);
+
+  const filteredProjects = projects.filter((p) => {
     if (projectFilter === "all") return true;
     return p.status === projectFilter;
   });
 
   // Inquiry modal state
   const [inquiryOpen, setInquiryOpen] = useState(false);
-  const [selectedInquiryProject, setSelectedInquiryProject] = useState<ProjectData | null>(null);
+  const [selectedInquiryProject, setSelectedInquiryProject] = useState<Project | null>(null);
 
-  const openInquiry = (project: ProjectData) => {
+  const openInquiry = (project: Project) => {
     setSelectedInquiryProject(project);
     setInquiryOpen(true);
   };
@@ -188,25 +123,47 @@ export default function Home() {
   const [jvLoading, setJvLoading] = useState(false);
   const [jvSuccess, setJvSuccess] = useState(false);
 
-  const handleJvSubmit = (e: React.FormEvent) => {
+  const handleJvSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!jvForm.name || !jvForm.phone || !jvForm.location) return;
 
     setJvLoading(true);
-    setTimeout(() => {
-      setJvLoading(false);
-      setJvSuccess(true);
-      setJvForm({
-        name: "",
-        phone: "",
-        email: "",
-        location: "",
-        size: "",
-        roadWidth: "",
-        notes: ""
+    try {
+      const res = await fetch("/api/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "jv_proposal",
+          name: jvForm.name,
+          phone: jvForm.phone,
+          email: jvForm.email,
+          land_location: jvForm.location,
+          land_size: jvForm.size,
+          road_width: jvForm.roadWidth,
+          notes: jvForm.notes
+        })
       });
-      setTimeout(() => setJvSuccess(false), 4000);
-    }, 1500);
+
+      if (res.ok) {
+        setJvSuccess(true);
+        setJvForm({
+          name: "",
+          phone: "",
+          email: "",
+          location: "",
+          size: "",
+          roadWidth: "",
+          notes: ""
+        });
+        setTimeout(() => setJvSuccess(false), 4000);
+      } else {
+        alert(lang === "en" ? "Submission failed" : "জমা দিতে ব্যর্থ হয়েছে");
+      }
+    } catch {
+      alert(lang === "en" ? "An error occurred" : "একটি ত্রুটি ঘটেছে");
+    } finally {
+      setJvLoading(false);
+    }
   };
 
   // Contact form state
@@ -219,22 +176,41 @@ export default function Home() {
   const [contactLoading, setContactLoading] = useState(false);
   const [contactSuccess, setContactSuccess] = useState(false);
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!contactForm.name || !contactForm.phone) return;
 
     setContactLoading(true);
-    setTimeout(() => {
-      setContactLoading(false);
-      setContactSuccess(true);
-      setContactForm({
-        name: "",
-        phone: "",
-        interest: "flat",
-        message: ""
+    try {
+      const res = await fetch("/api/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "contact",
+          name: contactForm.name,
+          phone: contactForm.phone,
+          interest: contactForm.interest,
+          message: contactForm.message
+        })
       });
-      setTimeout(() => setContactSuccess(false), 4000);
-    }, 1500);
+
+      if (res.ok) {
+        setContactSuccess(true);
+        setContactForm({
+          name: "",
+          phone: "",
+          interest: "flat",
+          message: ""
+        });
+        setTimeout(() => setContactSuccess(false), 4000);
+      } else {
+        alert(lang === "en" ? "Submission failed" : "বার্তা পাঠানো ব্যর্থ হয়েছে");
+      }
+    } catch {
+      alert(lang === "en" ? "An error occurred" : "একটি ত্রুটি ঘটেছে");
+    } finally {
+      setContactLoading(false);
+    }
   };
 
   // Scroll anchor helper
@@ -276,12 +252,12 @@ export default function Home() {
               priority={index === 0}
               className="object-cover object-center"
             />
-            {/* Overlay Gradient (dynamic slate/slate-950 shade) */}
+            {/* Overlay Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-100/80 via-transparent to-slate-100/10 dark:from-slate-950 dark:via-slate-950/70 dark:to-slate-950/20 transition-all duration-300" />
           </div>
         ))}
 
-        {/* Hero Content with dynamic glassmorphic card backing in light mode */}
+        {/* Hero Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-10 sm:p-12 text-center space-y-6 bg-white/75 dark:bg-transparent backdrop-blur-md dark:backdrop-blur-none border border-slate-200/30 dark:border-transparent rounded-3xl shadow-xl dark:shadow-none transition-all duration-300">
           <div className="inline-flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/25 px-4 py-1.5 rounded-full text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-semibold tracking-wide uppercase animate-pulse">
             <Building2 className="h-4 w-4 shrink-0" />
@@ -364,7 +340,7 @@ export default function Home() {
             </div>
             <div className="p-4 space-y-1.5 border-r border-slate-200 dark:border-slate-800 last:border-0">
               <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">RAJUK</div>
-              <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
+              <div className="text-xs sm:text-sm text-slate-505 dark:text-slate-400 font-semibold uppercase tracking-wider">
                 {lang === "en" ? "Compliant Standards" : "অনুমোদিত কাঠামো"}
               </div>
             </div>
@@ -442,7 +418,7 @@ export default function Home() {
               {t.projects.title}
             </h2>
             <div className="h-1 w-20 bg-gradient-to-r from-emerald-400 to-teal-500 mx-auto rounded-full" />
-            <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed">
+            <p className="text-slate-505 dark:text-slate-400 text-base leading-relaxed">
               {t.projects.subtitle}
             </p>
           </div>
@@ -468,7 +444,12 @@ export default function Home() {
           </div>
 
           {/* Projects Grid */}
-          {filteredProjects.length > 0 ? (
+          {projectsLoading ? (
+            <div className="flex items-center justify-center py-20 gap-2 text-sm text-slate-500">
+              <Loader2 className="w-5 h-5 animate-spin text-emerald-500" />
+              <span>{lang === "en" ? "Loading projects..." : "প্রজেক্ট লোড হচ্ছে..."}</span>
+            </div>
+          ) : filteredProjects.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project) => (
                 <ProjectCard
@@ -501,7 +482,7 @@ export default function Home() {
                   {lang === "en" ? "Turn Your Plot Into a Landmark" : "আপনার মূল্যবান জমিকে দৃষ্টিনন্দন ল্যান্ডমার্কে রূপ দিন"}
                 </h2>
                 <div className="h-1 w-20 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full" />
-                <p className="text-slate-500 dark:text-slate-400 text-base leading-relaxed">
+                <p className="text-slate-505 dark:text-slate-400 text-base leading-relaxed">
                   {t.landowner.subtitle}
                 </p>
               </div>
@@ -572,7 +553,7 @@ export default function Home() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="jv-phone" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                      <label htmlFor="jv-phone" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
                         {t.landowner.phone} <span className="text-rose-500">*</span>
                       </label>
                       <Input
@@ -587,23 +568,39 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label htmlFor="jv-location" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                      {t.landowner.location} <span className="text-rose-500">*</span>
-                    </label>
-                    <Input
-                      id="jv-location"
-                      required
-                      placeholder={lang === "en" ? "e.g. West Shewrapara, Mirpur" : "যেমন: পশ্চিম শেওড়াপাড়া, মিরপুর"}
-                      className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
-                      value={jvForm.location}
-                      onChange={(e) => setJvForm({ ...jvForm, location: e.target.value })}
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label htmlFor="jv-email" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
+                        {t.landowner.email}
+                      </label>
+                      <Input
+                        id="jv-email"
+                        type="email"
+                        placeholder={lang === "en" ? "e.g. jv@example.com" : "যেমন: jv@example.com"}
+                        className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
+                        value={jvForm.email}
+                        onChange={(e) => setJvForm({ ...jvForm, email: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label htmlFor="jv-location" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
+                        {t.landowner.location} <span className="text-rose-500">*</span>
+                      </label>
+                      <Input
+                        id="jv-location"
+                        required
+                        placeholder={lang === "en" ? "e.g. West Shewrapara, Mirpur" : "যেমন: পশ্চিম শেওড়াপাড়া, মিরপুর"}
+                        className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500"
+                        value={jvForm.location}
+                        onChange={(e) => setJvForm({ ...jvForm, location: e.target.value })}
+                      />
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label htmlFor="jv-size" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                      <label htmlFor="jv-size" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
                         {t.landowner.size}
                       </label>
                       <Input
@@ -616,7 +613,7 @@ export default function Home() {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="jv-road" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                      <label htmlFor="jv-road" className="text-[10px] font-bold text-slate-555 dark:text-slate-400 uppercase tracking-wider">
                         {t.landowner.roadWidth}
                       </label>
                       <Input
@@ -630,7 +627,7 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="jv-notes" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="jv-notes" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
                       {t.landowner.notes}
                     </label>
                     <Textarea
@@ -721,7 +718,7 @@ export default function Home() {
                           {dir.role}
                         </span>
                       </div>
-                      <p className="text-slate-505 dark:text-slate-400 text-xs leading-relaxed mt-1.5">
+                      <p className="text-slate-500 dark:text-slate-400 text-xs leading-relaxed mt-1.5">
                         {dir.bio}
                       </p>
                     </div>
@@ -768,7 +765,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="text-slate-900 dark:text-white font-bold text-sm">{t.contact.phone}</h4>
-                    <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-1">
+                    <p className="text-slate-555 dark:text-slate-400 text-xs sm:text-sm mt-1">
                       <a href="tel:+8801700000000" className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
                         +880 1700-000000
                       </a>
@@ -777,9 +774,8 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Graphical Map representation in UI instead of default frame */}
+              {/* Graphical Map representation */}
               <div className="bg-slate-100/60 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl h-64 relative overflow-hidden flex flex-col justify-end p-6 transition-colors duration-300">
-                {/* SVG Abstract Grid Pattern mimicking city roads */}
                 <div className="absolute inset-0 opacity-15">
                   <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -788,7 +784,6 @@ export default function Home() {
                       </pattern>
                     </defs>
                     <rect width="100%" height="100%" fill="url(#grid)" />
-                    {/* Add glowing circles representing project locations */}
                     <circle cx="150" cy="80" r="10" fill="#10B981" />
                     <line x1="150" y1="80" x2="300" y2="180" stroke="#10B981" strokeWidth="2" strokeDasharray="5,5" />
                     <circle cx="300" cy="180" r="8" fill="#14B8A6" />
@@ -828,7 +823,7 @@ export default function Home() {
               ) : (
                 <form onSubmit={handleContactSubmit} className="space-y-4">
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-name" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="contact-name" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       {t.contact.name} <span className="text-rose-500">*</span>
                     </label>
                     <Input
@@ -842,7 +837,7 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-phone" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="contact-phone" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       {t.contact.phone} <span className="text-rose-500">*</span>
                     </label>
                     <Input
@@ -857,7 +852,7 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-interest" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="contact-interest" className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                       {t.contact.interest}
                     </label>
                     <select
@@ -874,7 +869,7 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="contact-msg" className="text-[10px] font-bold text-slate-555 dark:text-slate-400 uppercase tracking-wider">
+                    <label htmlFor="contact-msg" className="text-[10px] font-bold text-slate-505 dark:text-slate-400 uppercase tracking-wider">
                       {t.contact.msg}
                     </label>
                     <Textarea
@@ -909,21 +904,12 @@ export default function Home() {
       <Footer lang={lang} />
 
       {/* Project Inquiry Dialog */}
-      {selectedInquiryProject && (
-        <InquiryDialog
-          isOpen={inquiryOpen}
-          onClose={() => setInquiryOpen(false)}
-          lang={lang}
-          projectName={lang === "en" ? selectedInquiryProject.titleEn : selectedInquiryProject.titleBn}
-          projectType={
-            selectedInquiryProject.type === "apartment"
-              ? t.projects.types.apartment
-              : selectedInquiryProject.type === "land"
-              ? t.projects.types.land
-              : t.projects.types.commercial
-          }
-        />
-      )}
+      <InquiryDialog
+        isOpen={inquiryOpen}
+        onClose={() => setInquiryOpen(false)}
+        lang={lang}
+        project={selectedInquiryProject}
+      />
     </div>
   );
 }

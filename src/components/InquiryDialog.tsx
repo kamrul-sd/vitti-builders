@@ -14,21 +14,20 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { CheckCircle2, Loader2 } from "lucide-react";
+import type { Project } from "@/types";
 
 interface InquiryDialogProps {
   isOpen: boolean;
   onClose: () => void;
   lang: Language;
-  projectName: string;
-  projectType: string;
+  project: Project | null;
 }
 
 export default function InquiryDialog({
   isOpen,
   onClose,
   lang,
-  projectName,
-  projectType,
+  project,
 }: InquiryDialogProps) {
   const t = translations[lang];
   const [formData, setFormData] = useState({
@@ -40,21 +39,55 @@ export default function InquiryDialog({
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const projectName = project ? (lang === "en" ? project.title_en : project.title_bn) : "";
+  const projectTypeLabel = project
+    ? lang === "en"
+      ? project.type === "apartment"
+        ? "Residential Flat"
+        : project.type === "land"
+        ? "Land Share"
+        : "Commercial Space"
+      : project.type === "apartment"
+      ? "আবাসিক ফ্ল্যাট"
+      : project.type === "land"
+      ? "জমির শেয়ার"
+      : "বাণিজ্যিক স্পেস"
+    : "";
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) return;
 
     setLoading(true);
-    // Simulate API request
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          project_id: project?.id || null,
+          project_name: project?.title_en || "",
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (res.ok) {
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+          setFormData({ name: "", phone: "", email: "", message: "" });
+          onClose();
+        }, 2500);
+      } else {
+        alert(lang === "en" ? "Failed to submit inquiry" : "অনুসন্ধান জমা দিতে ব্যর্থ হয়েছে");
+      }
+    } catch {
+      alert(lang === "en" ? "An error occurred" : "একটি ত্রুটি ঘটেছে");
+    } finally {
       setLoading(false);
-      setSuccess(true);
-      setTimeout(() => {
-        setSuccess(false);
-        setFormData({ name: "", phone: "", email: "", message: "" });
-        onClose();
-      }, 2500);
-    }, 1500);
+    }
   };
 
   return (
@@ -65,7 +98,7 @@ export default function InquiryDialog({
             <span>{t.inquiryModal.title}</span>
           </DialogTitle>
           <DialogDescription className="text-slate-500 dark:text-slate-400 text-sm mt-1">
-            {t.inquiryModal.subtitle} <strong className="text-emerald-600 dark:text-emerald-400 font-semibold">{projectName}</strong> ({projectType}).
+            {t.inquiryModal.subtitle} <strong className="text-emerald-600 dark:text-emerald-400 font-semibold">{projectName}</strong> ({projectTypeLabel}).
           </DialogDescription>
         </DialogHeader>
 

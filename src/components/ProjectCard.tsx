@@ -5,38 +5,22 @@ import { Language, translations } from "@/utils/translations";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Layout, Calendar, Layers } from "lucide-react";
-
-export interface ProjectData {
-  id: string;
-  titleEn: string;
-  titleBn: string;
-  locationEn: string;
-  locationBn: string;
-  type: "apartment" | "land" | "commercial";
-  status: "ongoing" | "upcoming" | "completed";
-  sizeEn: string;
-  sizeBn: string;
-  priceEn: string;
-  priceBn: string;
-  image: string;
-  featuresEn: string[];
-  featuresBn: string[];
-}
+import type { Project } from "@/types";
 
 interface ProjectCardProps {
-  project: ProjectData;
+  project: Project;
   lang: Language;
-  onInquire: (project: ProjectData) => void;
+  onInquire: (project: Project) => void;
 }
 
 export default function ProjectCard({ project, lang, onInquire }: ProjectCardProps) {
   const t = translations[lang];
 
   // Helper values
-  const title = lang === "en" ? project.titleEn : project.titleBn;
-  const location = lang === "en" ? project.locationEn : project.locationBn;
-  const size = lang === "en" ? project.sizeEn : project.sizeBn;
-  const price = lang === "en" ? project.priceEn : project.priceBn;
+  const title = lang === "en" ? project.title_en : project.title_bn;
+  const location = lang === "en" ? project.location_en : project.location_bn;
+  const size = lang === "en" ? project.size_en : project.size_bn;
+  const price = lang === "en" ? project.price_en : project.price_bn;
 
   const statusLabels = {
     ongoing: t.projects.status.ongoing,
@@ -61,7 +45,7 @@ export default function ProjectCard({ project, lang, onInquire }: ProjectCardPro
       {/* Project Image & Badge */}
       <div className="relative h-64 w-full overflow-hidden shrink-0">
         <Image
-          src={project.image}
+          src={project.image_url || "/images/placeholder.png"}
           alt={title}
           fill
           sizes="(max-w-768px) 100vw, (max-w-1200px) 50vw, 33vw"
@@ -127,7 +111,7 @@ export default function ProjectCard({ project, lang, onInquire }: ProjectCardPro
       <CardContent className="px-6 pt-4 pb-0">
         {/* Short bullet features */}
         <div className="flex flex-wrap gap-1.5">
-          {(lang === "en" ? project.featuresEn : project.featuresBn).slice(0, 2).map((feat, idx) => (
+          {(lang === "en" ? project.features_en : project.features_bn).slice(0, 2).map((feat, idx) => (
             <span
               key={idx}
               className="text-[10px] bg-slate-100 dark:bg-slate-950 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800 px-2 py-0.5 rounded"
